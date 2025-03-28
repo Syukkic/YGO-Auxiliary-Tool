@@ -6,7 +6,7 @@ export interface RitualBeastTranslation {
 
 export const translations: Record<string, RitualBeastTranslation> = {
   "繁體中文": {
-    title: "靈獸特招記錄",
+    title: "靈獸特召記錄",
     reset: "重置",
     monsters: [
       "企鵝（獸）",
@@ -22,7 +22,7 @@ export const translations: Record<string, RitualBeastTranslation> = {
     ],
   },
   "简体中文": {
-    title: "灵兽特招记录",
+    title: "灵兽特召记录",
     reset: "重置",
     monsters: [
       "企鹅（兽）",
