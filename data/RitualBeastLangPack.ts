@@ -38,7 +38,7 @@ export const translations: Record<string, RitualBeastTranslation> = {
     ],
   },
   English: {
-    title: "Ritual Beast Specical Summon Tracker",
+    title: "Ritual Beast Special Summon Tracker",
     reset: "Reset",
     monsters: [
       "Penguin (beast)",
