@@ -7,36 +7,59 @@ export default function MonsterList() {
   const specialSummon = useSignal<boolean[]>(
     Array(rb.monsters.length).fill(false),
   );
+  const announcement = useSignal("");
+
+  const handleToggle = (index: number, checked: boolean) => {
+    const newState = [...specialSummon.value];
+    newState[index] = checked;
+    specialSummon.value = newState;
+    announcement.value = `${rb.monsters[index]} ${
+      checked ? "已特召" : "未特召"
+    }`;
+  };
   const handleReset = () => {
     specialSummon.value = new Array(rb.monsters.length).fill(false);
+    announcement.value = "已重置所有靈獸狀態";
+    document.querySelector<HTMLInputElement>(".switch input")?.focus();
   };
 
   return (
-    <div class="container">
-      <h1>{rb.title}</h1>
+    <div class="container" role="region" aria-label="靈獸特召記錄面板">
+      <h1 id="ritual-beast-title">{rb.title}</h1>
       {/* <RBLanguageSwitcher /> */}
-      <div class="monster-list">
+      <div
+        class="monster-list"
+        role="list"
+        aria-labelledby="ritual-beast-title"
+      >
         {rb.monsters.map((name, index) => (
-          <div class="monster-item" key={index}>
+          <div class="monster-item" key={index} role="listitem">
             <span>{name}</span>
             <label class="switch">
               <input
                 type="checkbox"
                 checked={specialSummon.value[index]}
-                onChange={(e) => {
-                  const newStates = [...specialSummon.value];
-                  newStates[index] = e.currentTarget.checked;
-                  specialSummon.value = newStates;
-                }}
+                onChange={(e) =>
+                  handleToggle(index, e.currentTarget.checked)}
+                aria-labelledby={`monster-name-${index}`}
+                aria-checked={specialSummon.value[index]}
               />
-              <span class="slider round"></span>
+              <span class="slider round" aria-hidden="true"></span>
             </label>
           </div>
         ))}
       </div>
-      <button type="reset" id="resetButton" onClick={handleReset}>
+      <button
+        type="reset"
+        id="resetButton"
+        onClick={handleReset}
+        aria-label="重置所有靈獸特招狀態"
+      >
         {rb.reset}
       </button>
+      <div aria-live="polite" class="sr-only">
+        {announcement.value}
+      </div>
     </div>
   );
 }

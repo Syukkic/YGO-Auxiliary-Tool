@@ -24,8 +24,8 @@ export default function EquationCalc() {
   };
 
   return (
-    <div class="equation-calculator">
-      <h1>{t.title}</h1>
+    <div class="equation-calculator" role="region" aria-label={t.title}>
+      <h1 id="main-title">{t.title}</h1>
       {/* <SCELanguageSwitcher /> */}
 
       <div class="calc-phase">
@@ -37,7 +37,6 @@ export default function EquationCalc() {
               type="number"
               value={totalCards || ""}
               onInput={handleInputChange(setTotalCards)}
-              // onChange={(e) => setTotalCards(Number(e.currentTarget.value))}
             />
           </label>
         </div>
@@ -49,7 +48,6 @@ export default function EquationCalc() {
               type="number"
               value={xyzRank || ""}
               onInput={handleInputChange(setXyzRank)}
-              // onChange={(e) => setXyzRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
@@ -61,7 +59,6 @@ export default function EquationCalc() {
               type="number"
               value={fusionRank || ""}
               onInput={handleInputChange(setFusionRank)}
-              // onChange={(e) => setFusionRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
@@ -86,7 +83,6 @@ export default function EquationCalc() {
               type="number"
               value={targetRank || ""}
               onInput={handleInputChange(setTargetRank)}
-              // onChange={(e) => setTargetRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
