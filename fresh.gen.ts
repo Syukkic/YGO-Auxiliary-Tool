@@ -7,6 +7,7 @@ import * as $SimultaneousEquationCannons from "./routes/SimultaneousEquationCann
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $GenericLanguageSwitcher from "./islands/GenericLanguageSwitcher.tsx";
 import * as $LanguageSwitcher from "./islands/LanguageSwitcher.tsx";
 import * as $RitualBeastList from "./islands/RitualBeastList.tsx";
 import * as $SimultaneousEquationCannons_1 from "./islands/SimultaneousEquationCannons.tsx";
@@ -22,6 +23,7 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
+    "./islands/GenericLanguageSwitcher.tsx": $GenericLanguageSwitcher,
     "./islands/LanguageSwitcher.tsx": $LanguageSwitcher,
     "./islands/RitualBeastList.tsx": $RitualBeastList,
     "./islands/SimultaneousEquationCannons.tsx": $SimultaneousEquationCannons_1,

@@ -1,5 +1,5 @@
 import { signal } from "@preact/signals";
-import { GenericLanguageSwitcher } from "../components/GenericLanguageSwitcher.tsx";
+import { GenericLanguageSwitcher } from "./GenericLanguageSwitcher.tsx";
 import {
   RBLanguage,
   translations as rbTranslations,
