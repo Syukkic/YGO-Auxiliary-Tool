@@ -48,7 +48,7 @@ export default function EquationCalc() {
             {t.xyzRank}
             <input
               type="number"
-              value={xyzRank}
+              value={xyzRank || ''}
               onInput={handleInputChange(setXyzRank)}
               // onChange={(e) => setXyzRank(Number(e.currentTarget.value))}
             />
