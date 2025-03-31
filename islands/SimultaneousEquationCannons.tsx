@@ -1,16 +1,28 @@
-import { useState } from "preact/hooks";
-import { translations } from "../data/SimultaneousEquationCannonsLangPack.ts";
-import { SCECurrentLang, SCELanguageSwitcher } from "./LanguageSwitcher.tsx";
+import { useState } from 'preact/hooks';
+import { translations } from '../data/SimultaneousEquationCannonsLangPack.ts';
+import { SCECurrentLang, SCELanguageSwitcher } from './LanguageSwitcher.tsx';
 
 export default function EquationCalc() {
-  const [totalCards, setTotalCards] = useState<number>(0);
-  const [xyzRank, setXyzRank] = useState<number>(0);
-  const [fusionRank, setFusionRank] = useState<number>(0);
-  const [targetRank, setTargetRank] = useState<number>(0);
+  const [totalCards, setTotalCards] = useState<number | null>(null);
+  const [xyzRank, setXyzRank] = useState<number | null>(null);
+  const [fusionRank, setFusionRank] = useState<number | null>(null);
+  const [targetRank, setTargetRank] = useState<number | null>(null);
 
-  const isValidCombo = 2 * xyzRank + fusionRank === totalCards;
-  const canActivateEffect = xyzRank + fusionRank === targetRank;
-  const t = translations[SCECurrentLang.value] || translations["繁體中文"];
+  const isValidCombo =
+    xyzRank !== null && fusionRank !== null
+      ? 2 * xyzRank + fusionRank === totalCards
+      : false;
+
+  const canActivateEffect =
+    xyzRank !== null && fusionRank !== null && targetRank !== null
+      ? xyzRank + fusionRank === targetRank
+      : false;
+  const t = translations[SCECurrentLang.value] || translations['繁體中文'];
+
+  const handleInputChange = (setter: (value: number) => void) => (e: Event) => {
+    const value = (e.target as HTMLInputElement).value;
+    setter(value === '' ? 0 : Number(value));
+  };
 
   return (
     <div class="equation-calculator">
@@ -24,8 +36,9 @@ export default function EquationCalc() {
             {t.totalCards}
             <input
               type="number"
-              value={totalCards}
-              onChange={(e) => setTotalCards(Number(e.currentTarget.value))}
+              value={totalCards || ''}
+              onInput={handleInputChange(setTotalCards)}
+              // onChange={(e) => setTotalCards(Number(e.currentTarget.value))}
             />
           </label>
         </div>
@@ -36,7 +49,8 @@ export default function EquationCalc() {
             <input
               type="number"
               value={xyzRank}
-              onChange={(e) => setXyzRank(Number(e.currentTarget.value))}
+              onInput={handleInputChange(setXyzRank)}
+              // onChange={(e) => setXyzRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
@@ -46,16 +60,17 @@ export default function EquationCalc() {
             {t.fusionRank}
             <input
               type="number"
-              value={fusionRank}
-              onChange={(e) => setFusionRank(Number(e.currentTarget.value))}
+              value={fusionRank || ''}
+              onInput={handleInputChange(setFusionRank)}
+              // onChange={(e) => setFusionRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
 
-        {totalCards > 0 && (
+        {totalCards !== 0 && (
           <div
             class={`result-feedback ${
-              isValidCombo ? "result-valid" : "result-invalid"
+              isValidCombo ? 'result-valid' : 'result-invalid'
             }`}
           >
             {isValidCombo ? t.validCombo : t.invalidCombo}
@@ -70,16 +85,17 @@ export default function EquationCalc() {
             {t.targetRank}
             <input
               type="number"
-              value={targetRank}
-              onChange={(e) => setTargetRank(Number(e.currentTarget.value))}
+              value={targetRank || ''}
+              onInput={handleInputChange(setTargetRank)}
+              // onChange={(e) => setTargetRank(Number(e.currentTarget.value))}
             />
           </label>
         </div>
 
-        {targetRank > 0 && (
+        {targetRank !== 0 && (
           <div
             class={`result-feedback ${
-              canActivateEffect ? "result-valid" : "result-invalid"
+              canActivateEffect ? 'result-valid' : 'result-invalid'
             }`}
           >
             {canActivateEffect ? t.validEffect : t.invalidEffect}
@@ -88,9 +104,7 @@ export default function EquationCalc() {
       </div>
 
       <div class="effect-description">
-        <p>
-          {t.effectText}
-        </p>
+        <p>{t.effectText}</p>
       </div>
     </div>
   );
