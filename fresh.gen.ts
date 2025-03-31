@@ -2,15 +2,21 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $RitualBeast from "./routes/RitualBeast.tsx";
+import * as $SimultaneousEquationCannons from "./routes/SimultaneousEquationCannons.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $LanguageSwitcher from "./islands/LanguageSwitcher.tsx";
 import * as $RitualBeastList from "./islands/RitualBeastList.tsx";
+import * as $SimultaneousEquationCannons_1 from "./islands/SimultaneousEquationCannons.tsx";
+import * as $ToolList from "./islands/ToolList.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/RitualBeast.tsx": $RitualBeast,
+    "./routes/SimultaneousEquationCannons.tsx": $SimultaneousEquationCannons,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/index.tsx": $index,
@@ -18,6 +24,8 @@ const manifest = {
   islands: {
     "./islands/LanguageSwitcher.tsx": $LanguageSwitcher,
     "./islands/RitualBeastList.tsx": $RitualBeastList,
+    "./islands/SimultaneousEquationCannons.tsx": $SimultaneousEquationCannons_1,
+    "./islands/ToolList.tsx": $ToolList,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

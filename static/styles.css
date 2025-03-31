@@ -31,15 +31,6 @@ body {
   padding: 1rem;
 }
 
-.container {
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-}
 
 
 h1 {
@@ -50,6 +41,69 @@ h1 {
   font-weight: 600;
 }
 
+/* Index page */
+
+.index-container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+@media (max-height: 600px) {
+  .index-container {
+    position: static;
+    transform: none;
+    margin: 2rem auto;
+  }
+}
+
+.tool-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tool-list li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  text-align: center
+}
+
+.tool-list li a:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+
+}
 .monster-list {
   display: grid;
   gap: 0.75rem;
@@ -223,4 +277,110 @@ button:active {
 .language-switcher button:disabled {
   opacity: 1;
   cursor: default;
+}
+
+
+/* Simultaneous Equation Cannons */
+.equation-calculator {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  margin: 2rem auto;
+}
+
+.equation-calculator h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.calc-phase {
+  background-color: var(--primary-light);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.calc-phase h2 {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calc-input {
+  margin-bottom: 1rem;
+}
+
+.calc-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.calc-input input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.calc-input input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.result-feedback {
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.result-valid {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #065f46;
+}
+
+.result-invalid {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+}
+
+.effect-description {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  padding: 0.75rem;
+  background-color: var(--primary-light);
+  border-radius: 6px;
+  margin-top: 1.5rem;
+}
+
+.effect-description h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .equation-calculator {
+    padding: 2rem;
+  }
+  
+  .calc-phase {
+    padding: 1.5rem;
+  }
 }

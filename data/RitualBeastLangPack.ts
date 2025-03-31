@@ -1,10 +1,11 @@
+import { Translations } from "./types.ts";
 export interface RitualBeastTranslation {
   title: string;
   reset: string;
   monsters: string[];
 }
 
-export const translations: Record<string, RitualBeastTranslation> = {
+export const translations: Translations<RitualBeastTranslation> = {
   "繁體中文": {
     title: "靈獸特召記錄",
     reset: "重置",
@@ -71,4 +72,4 @@ export const translations: Record<string, RitualBeastTranslation> = {
   },
 };
 
-export type Language = keyof typeof translations;
+export type RBLanguage = keyof typeof translations;

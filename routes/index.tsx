@@ -1,9 +1,9 @@
-import MonsterList from "../islands/RitualBeastList.tsx";
+import ToolList from "../islands/ToolList.tsx";
 
 export default function Home() {
   return (
     <body>
-      <MonsterList />
+      <ToolList />
     </body>
   );
 }

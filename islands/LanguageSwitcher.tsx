@@ -1,30 +1,45 @@
 import { signal } from "@preact/signals";
-import { Language, translations } from "../data/RitualBeastLangPack.ts";
-import { useEffect } from "preact/hooks";
+import { GenericLanguageSwitcher } from "../components/GenericLanguageSwitcher.tsx";
+import {
+  RBLanguage,
+  translations as rbTranslations,
+} from "../data/RitualBeastLangPack.ts";
+import {
+  SECLanguage,
+  translations as secTranslations,
+} from "../data/SimultaneousEquationCannonsLangPack.ts";
+import {
+  ToolListLanguage,
+  translations as tlTranslations,
+} from "../data/ToolListLangPack.ts";
 
-export const currentLang = signal<Language>("繁体中文");
+export const rbCurrentLang = signal<RBLanguage>("繁體中文");
+export const SCECurrentLang = signal<SECLanguage>("繁體中文");
+export const TLCurrentLang = signal<ToolListLanguage>("繁體中文");
 
-export default function LanguageSwitcher() {
-  useEffect(() => {
-    if (currentLang.value !== "繁體中文") {
-      currentLang.value = "繁體中文";
-    }
-  }, []);
-
+export function RBLanguageSwitcher() {
   return (
-    <div class="language-switcher">
-      {Object.keys(translations).map((lang) => (
-        <button
-          key={lang}
-          type="button"
-          onClick={() => currentLang.value = lang}
-          disabled={currentLang.value === lang}
-          class={currentLang.value === lang ? "active" : ""}
-          aria-current={currentLang.value === lang ? "true" : "false"}
-        >
-          {lang.toUpperCase()}
-        </button>
-      ))}
-    </div>
+    <GenericLanguageSwitcher
+      currentLang={rbCurrentLang}
+      translations={rbTranslations}
+    />
+  );
+}
+
+export function SCELanguageSwitcher() {
+  return (
+    <GenericLanguageSwitcher
+      currentLang={SCECurrentLang}
+      translations={secTranslations}
+    />
+  );
+}
+
+export function TLLanguageSwitcher() {
+  return (
+    <GenericLanguageSwitcher
+      currentLang={TLCurrentLang}
+      translations={tlTranslations}
+    />
   );
 }

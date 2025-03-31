@@ -1,9 +1,9 @@
 import { useSignal } from "@preact/signals";
-import LanguageSwitcher, { currentLang } from "./LanguageSwitcher.tsx";
+import { rbCurrentLang, RBLanguageSwitcher } from "./LanguageSwitcher.tsx";
 import { translations } from "../data/RitualBeastLangPack.ts";
 
 export default function MonsterList() {
-  const rb = translations[currentLang.value] || translations["繁體中文"];
+  const rb = translations[rbCurrentLang.value] || translations["繁體中文"];
   const specialSummon = useSignal<boolean[]>(
     Array(rb.monsters.length).fill(false),
   );
@@ -14,7 +14,7 @@ export default function MonsterList() {
   return (
     <div class="container">
       <h1>{rb.title}</h1>
-      <LanguageSwitcher />
+      {/* <RBLanguageSwitcher /> */}
       <div class="monster-list">
         {rb.monsters.map((name, index) => (
           <div class="monster-item" key={index}>
