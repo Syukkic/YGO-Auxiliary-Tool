@@ -1,10 +1,10 @@
-import { Signal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
+import { signal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
 
 type Language = string;
 
 interface GenericLanguageSwitcherProps {
-  currentLang: Signal<Language>;
+  currentLang: signal<Language>;
   // deno-lint-ignore no-explicit-any
   translations: Record<Language, any>;
   useUppercase?: boolean;
@@ -15,7 +15,7 @@ export function GenericLanguageSwitcher({
   currentLang,
   translations,
   useUppercase = false,
-  initialLang = "繁體中文",
+  initialLang = '繁體中文',
 }: GenericLanguageSwitcherProps) {
   useEffect(() => {
     if (initialLang && currentLang.value !== initialLang) {
@@ -31,8 +31,8 @@ export function GenericLanguageSwitcher({
           type="button"
           onClick={() => (currentLang.value = lang)}
           disabled={currentLang.value === lang}
-          class={currentLang.value === lang ? "active" : ""}
-          aria-current={currentLang.value === lang ? "true" : "false"}
+          class={currentLang.value === lang ? 'active' : ''}
+          aria-current={currentLang.value === lang ? 'true' : 'false'}
         >
           {useUppercase ? lang.toUpperCase() : lang}
         </button>

@@ -1,26 +1,26 @@
-import { useSignal } from "@preact/signals";
-import { rbCurrentLang, RBLanguageSwitcher } from "./LanguageSwitcher.tsx";
-import { translations } from "../data/RitualBeastLangPack.ts";
+import { useSignal } from '@preact/signals';
+import { rbCurrentLang, RBLanguageSwitcher } from './LanguageSwitcher.tsx';
+import { translations } from '../data/RitualBeastLangPack.ts';
 
 export default function MonsterList() {
-  const rb = translations[rbCurrentLang.value] || translations["繁體中文"];
+  const rb = translations[rbCurrentLang.value] || translations['繁體中文'];
   const specialSummon = useSignal<boolean[]>(
     Array(rb.monsters.length).fill(false),
   );
-  const announcement = useSignal("");
+  const announcement = useSignal('');
 
   const handleToggle = (index: number, checked: boolean) => {
     const newState = [...specialSummon.value];
     newState[index] = checked;
     specialSummon.value = newState;
-    announcement.value = `${rb.monsters[index]} ${
-      checked ? "已特召" : "未特召"
+    announcement.value = `${rb.monsters[index].name} ${
+      checked ? '已特召' : '未特召'
     }`;
   };
   const handleReset = () => {
     specialSummon.value = new Array(rb.monsters.length).fill(false);
-    announcement.value = "已重置所有靈獸狀態";
-    document.querySelector<HTMLInputElement>(".switch input")?.focus();
+    announcement.value = '已重置所有靈獸狀態';
+    document.querySelector<HTMLInputElement>('.switch input')?.focus();
   };
 
   return (
@@ -32,15 +32,14 @@ export default function MonsterList() {
         role="list"
         aria-labelledby="ritual-beast-title"
       >
-        {rb.monsters.map((name, index) => (
-          <div class="monster-item" key={index} role="listitem">
-            <span>{name}</span>
+        {rb.monsters.map((monster, index) => (
+          <div class="monster-item" key={monster.id} role="listitem">
+            <span id={`monster-name-${index}`}>{monster.name}</span>
             <label class="switch">
               <input
                 type="checkbox"
                 checked={specialSummon.value[index]}
-                onChange={(e) =>
-                  handleToggle(index, e.currentTarget.checked)}
+                onChange={(e) => handleToggle(index, e.currentTarget.checked)}
                 aria-labelledby={`monster-name-${index}`}
                 aria-checked={specialSummon.value[index]}
               />
